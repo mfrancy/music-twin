@@ -3,6 +3,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ComparisonInput } from '../../models/comparison-input';
 import { form } from '@angular/forms/signals';
 import { ComparisonForm } from '../../components/comparison/comparison-form';
+import { LastfmService } from '../../services/lastfm.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-comparison-page',
@@ -12,9 +14,23 @@ import { ComparisonForm } from '../../components/comparison/comparison-form';
 })
 
 export class ComparisonPage {
+  lastfmService = inject(LastfmService);
 
-onCompare(event: ComparisonInput) {
-  console.log(event)
-}
-  
+  onCompare(event: ComparisonInput) {
+    const user$ = this.lastfmService.getUserInfo(event.user);
+    const otherUser$ = this.lastfmService.getUserInfo(event.otherUser);
+
+    forkJoin({
+      user: user$,
+      otherUser: otherUser$
+    }).subscribe({
+      next: (response) => {
+        console.log(response)
+      }, error: err => {
+        console.log(err)
+      }
+    })
+
+  }
+
 }
