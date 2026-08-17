@@ -1,0 +1,35 @@
+.site-header {
+  display: flex;
+  min-height: 66px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 max(28px, calc((100vw - 1240px) / 2));
+  background: #000;
+  color: #fff;
+}
+.brand {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+}
+.brand span {
+  color: #d92323;
+}
+.site-nav {
+  display: flex;
+  gap: 25px;
+}
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #e7e7e7;
+  font-size: 0.76rem;
+  text-decoration: none;
+}
+.site-nav svg {
+  width: 15px;
+  color: #d92323;
+}

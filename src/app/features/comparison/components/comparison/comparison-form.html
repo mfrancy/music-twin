@@ -1,6 +1,56 @@
 <form class="comparison-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-  <label class="field" for="user"><span>Usuário A</span><div><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 21a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><input id="user" type="text" formControlName="user" placeholder="username do Last.fm" autocomplete="off" /></div></label>
+  <label class="field" for="user">
+    <span>Usuário A</span>
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" />
+        <path
+          d="M5 21a7 7 0 0 1 14 0"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+      <input
+        id="user"
+        type="text"
+        formControlName="user"
+        placeholder="username do Last.fm"
+        autocomplete="off"
+      />
+    </div>
+  </label>
   <span class="form-vs" aria-hidden="true">VS</span>
-  <label class="field" for="otherUser"><span>Usuário B</span><div><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 21a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><input id="otherUser" type="text" formControlName="otherUser" placeholder="username do Last.fm" autocomplete="off" /></div></label>
-  <button type="submit"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19V9m7 10V5m7 14v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Comparar</button>
+  <label class="field" for="otherUser">
+    <span>Usuário B</span>
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" />
+        <path
+          d="M5 21a7 7 0 0 1 14 0"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+      <input
+        id="otherUser"
+        type="text"
+        formControlName="otherUser"
+        placeholder="username do Last.fm"
+        autocomplete="off"
+      />
+    </div>
+  </label>
+  <button loading="loading" type="submit">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M5 19V9m7 10V5m7 14v-7"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+    Comparar
+  </button>
 </form>

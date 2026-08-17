@@ -1,73 +1,18 @@
 <main class="comparison-page">
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Music Twins, início">music <span>twins</span></a>
-    <nav class="site-nav" aria-label="Navegação principal">
-      <a href="#about">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 10.8v5.2m0-8.1v.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
-        Sobre o projeto
-      </a>
-      <a href="#how-it-works">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M9.8 9.5a2.3 2.3 0 1 1 3.58 1.9c-.94.65-1.38 1.05-1.38 2.1m.01 3.05v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        Como funciona
-      </a>
-    </nav>
-  </header>
-
   <section class="comparison" id="how-it-works" aria-labelledby="comparison-title">
-    <article class="profile profile--left" [class.profile--ready]="userProfile">
-      @if (userProfile; as user) {
-        <img class="profile__avatar" [src]="user.image" [alt]="'Avatar de ' + user.username" />
-        <div class="profile__identity">
-          <h2>{{ user.realName || user.username }}</h2>
-          <p>{{ user.username }}</p>
-          <span>Last.fm user</span>
-        </div>
-        <dl class="profile__stats">
-          <div><dt><svg viewBox="0 0 24 24" fill="none"><path d="M4 15.5v-3a8 8 0 0 1 16 0v3M4 15.5h3v4H5.5A1.5 1.5 0 0 1 4 18v-2.5Zm16 0h-3v4h1.5A1.5 1.5 0 0 0 20 18v-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Scrobbles</dt><dd>{{ user.playCount | number }}</dd></div>
-          <div><dt><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.2a3 3 0 0 1 0 5.6m2 8.7a5.5 5.5 0 0 0-2.5-4.63" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Artistas</dt><dd>{{ user.artistCount | number }}</dd></div>
-          <div><dt><svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Tracks</dt><dd>{{ user.trackCount | number }}</dd></div>
-        </dl>
-      } @else {
-        <div class="profile__empty" aria-hidden="true"><span></span><p>Perfil A</p></div>
-      }
-    </article>
-
+    <app-user-profile [user]="userProfile" class="profile--left"></app-user-profile>
     <div class="comparison__center">
-      <p class="comparison__eyebrow">Compare seus hábitos musicais</p>
-      <h1 id="comparison-title">Dois perfis.<br /><span>Uma comparação.</span></h1>
+      <h1 id="comparison-title">
+        Compare seus.<br />
+        <span>hábitos musicais.</span>
+      </h1>
       <p class="comparison__intro">Descubra o quanto vocês combinam musicalmente.</p>
       <div class="vs" aria-hidden="true">VS</div>
       <app-comparison-form (compare)="onCompare($event)"></app-comparison-form>
     </div>
-
-    <article class="profile profile--right" [class.profile--ready]="otherUserProfile">
-      @if (otherUserProfile; as user) {
-        <img class="profile__avatar" [src]="user.image" [alt]="'Avatar de ' + user.username" />
-        <div class="profile__identity">
-          <h2>{{ user.realName || user.username }}</h2>
-          <p>{{ user.username }}</p>
-          <span>Last.fm user</span>
-        </div>
-        <dl class="profile__stats">
-          <div><dt><svg viewBox="0 0 24 24" fill="none"><path d="M4 15.5v-3a8 8 0 0 1 16 0v3M4 15.5h3v4H5.5A1.5 1.5 0 0 1 4 18v-2.5Zm16 0h-3v4h1.5A1.5 1.5 0 0 0 20 18v-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Scrobbles</dt><dd>{{ user.playCount | number }}</dd></div>
-          <div><dt><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.2a3 3 0 0 1 0 5.6m2 8.7a5.5 5.5 0 0 0-2.5-4.63" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Artistas</dt><dd>{{ user.artistCount | number }}</dd></div>
-          <div><dt><svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Tracks</dt><dd>{{ user.trackCount | number }}</dd></div>
-        </dl>
-      } @else {
-        <div class="profile__empty" aria-hidden="true"><span></span><p>Perfil B</p></div>
-      }
-    </article>
+    <app-user-profile [user]="otherUserProfile" class="profile--right"></app-user-profile>
   </section>
-
   @if (comparisonStats; as stats) {
-    <section class="results" id="about" aria-labelledby="results-title">
-      <div class="section-title"><p>Resultado da comparação</p><h2 id="results-title">Diferenças nos seus hábitos musicais</h2></div>
-      <div class="results__list">
-        <article class="metric"><div class="metric__heading"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15.5v-3a8 8 0 0 1 16 0v3M4 15.5h3v4H5.5A1.5 1.5 0 0 1 4 18v-2.5Zm16 0h-3v4h1.5A1.5 1.5 0 0 0 20 18v-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><p>Scrobbles</p></div><strong>{{ stats.playCountDifference | number }}</strong><p>reproduções de diferença</p><span></span></article>
-        <article class="metric"><div class="metric__heading"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.2a3 3 0 0 1 0 5.6m2 8.7a5.5 5.5 0 0 0-2.5-4.63" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p>Artistas</p></div><strong>{{ stats.artistCountDifference | number }}</strong><p>artistas de diferença</p><span></span></article>
-        <article class="metric"><div class="metric__heading"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><p>Tracks</p></div><strong>{{ stats.trackCountDifference | number }}</strong><p>faixas de diferença</p><span></span></article>
-      </div>
-    </section>
-    <section class="coming-soon" aria-labelledby="future-title"><span>Em breve</span><h2 id="future-title">O quanto seus gostos se sobrepõem?</h2><p>Em breve você poderá ver seus artistas em comum, compatibilidade musical e muito mais.</p></section>
+    <app-comparison-results [stats]="comparisonStats"></app-comparison-results>
   }
 </main>
