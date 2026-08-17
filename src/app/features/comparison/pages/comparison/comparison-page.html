@@ -1,6 +1,6 @@
 <main class="comparison-page">
   <section class="comparison" id="how-it-works" aria-labelledby="comparison-title">
-    <app-user-profile [user]="userProfile" class="profile--left"></app-user-profile>
+    <app-user-profile [user]="userProfile()" class="profile--left"></app-user-profile>
     <div class="comparison__center">
       <h1 id="comparison-title">
         Compare seus.<br />
@@ -8,11 +8,12 @@
       </h1>
       <p class="comparison__intro">Descubra o quanto vocês combinam musicalmente.</p>
       <div class="vs" aria-hidden="true">VS</div>
-      <app-comparison-form (compare)="onCompare($event)"></app-comparison-form>
+      <app-comparison-form [loading]="loading" (compare)="onCompare($event)"></app-comparison-form>
     </div>
-    <app-user-profile [user]="otherUserProfile" class="profile--right"></app-user-profile>
+    <app-user-profile [user]="otherUserProfile()" class="profile--right"></app-user-profile>
   </section>
-  @if (comparisonStats; as stats) {
-    <app-comparison-results [stats]="comparisonStats"></app-comparison-results>
+  @if (comparisonStats(); as stats) {
+    <app-comparison-results [stats]="stats"></app-comparison-results>
   }
 </main>
+

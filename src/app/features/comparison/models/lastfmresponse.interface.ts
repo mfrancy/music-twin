@@ -24,3 +24,21 @@ export interface ImageResponse {
     '#text': string
 }
 
+export interface GetTopArtistsResponse<TArtist> {
+    topartists: {
+        artist: TArtist[]
+    }
+}
+
+export interface ArtistResponse<TImage> {
+    streamable: string,
+    image: TImage[]
+    mbid: string,
+    url: string,
+    playcount: string
+    "@attr": {
+        rank: string
+    },
+    name: string
+}
+

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { ComparisonInput } from '../../models/comparison-input';
 import { ComparisonForm } from '../../components/comparison/comparison-form';
 import { LastfmService } from '../../services/lastfm.service';
@@ -8,6 +8,7 @@ import { ComparisonStats } from '../../models/comparison-stats.interface';
 import { UserProfile } from '../../models/user-profile.interface';
 import { UserProfileComponent } from '../../components/user-profile/user-profile';
 import { ComparisonResultsComponent } from '../../components/comparison-results/comparison-results';
+import { Artist } from '../../models/artists.interface';
 
 @Component({
   selector: 'app-comparison-page',
@@ -19,34 +20,74 @@ import { ComparisonResultsComponent } from '../../components/comparison-results/
 export class ComparisonPage {
   lastfmService = inject(LastfmService);
   comparisonService = inject(ComparisonService);
-  comparisonStats: ComparisonStats | null = null 
-  userProfile: UserProfile | null = null;
-  otherUserProfile: UserProfile | null = null;
-  loading = false
+  comparisonStats = signal<ComparisonStats | null>(null);
+  commomArtists = signal<Artist[] | null>([])
+  userProfile = signal<UserProfile | null>(null);
+  otherUserProfile = signal<UserProfile | null>(null);
+  userArtists = signal<Artist[]>([]);
+  otherUserArtists = signal<Artist[]>([]);
+  loading = false;
 
-  onCompare(event: ComparisonInput) {
-    const user$ = this.lastfmService.getUserInfo(event.user);
-    const otherUser$ = this.lastfmService.getUserInfo(event.otherUser);
-    this.loading = true
+  onCompare(event: ComparisonInput): void {
+    this.loadComparisonData(event)
+
+  }
+
+  loadComparisonData(profile: ComparisonInput) {
+    this.loading = true;
+    const user$ = this.lastfmService.getUserInfo(profile.user);
+    const otherUser$ = this.lastfmService.getUserInfo(profile.otherUser);
+    const userArtists$ = this.lastfmService.getTopArtists(profile.user);
+    const otherUserArtists$ = this.lastfmService.getTopArtists(profile.otherUser); 
 
     forkJoin({
       user: user$,
-      otherUser: otherUser$
+      otherUser: otherUser$,
+      userArtists: userArtists$,
+      otherUserArtists: otherUserArtists$
     }).subscribe({
       next: (response) => {
-        this.loading = false
         const user = response.user;
         const otherUser = response.otherUser;
-        const comparision = this.comparisonService.compare(user, otherUser)
-        this.userProfile = user;
-        this.otherUserProfile = otherUser;
-        this.comparisonStats = comparision
+        const comparision = this.comparisonService.compareMainStats(user, otherUser)
+        const findCommom = this.comparisonService.findCommonArtists(response.userArtists, response.otherUserArtists)
+        this.userProfile.set(user);
+        this.otherUserProfile.set(otherUser);
+        this.comparisonStats.set(comparision);
+        this.commomArtists.set(findCommom);
+        this.loading = false
       }, error: err => {
         this.loading = false
-        console.log(err)
       }
     })
 
   }
+
+  // loadArtist(profile: ComparisonInput) {
+  //   this.loading = true;
+  //   const user$ = this.lastfmService.getUserInfo(profile.user);
+  //   const otherUser$ = this.lastfmService.getUserInfo(profile.otherUser);
+  //   const userArtists$ = this.lastfmService.getTopArtists(profile.user);
+  //   const otherUserArtists$ = this.lastfmService.getTopArtists(profile.otherUser);
+
+  //   forkJoin({
+  //     user: user$,
+  //     otherUser: otherUser$,
+  //     userArtists: userArtists$,
+  //     otherUserArtists: otherUserArtists$
+  //   }).subscribe({
+  //     next: (response) => {
+  //       const user = response.user;
+  //       const otherUser = response.otherUser;
+  //       const comparision = this.comparisonService.compare(user, otherUser);
+  //       this.userArtists.set(user);
+  //       this.otherUserProfile.set(otherUser);
+  //       this.comparisonStats.set(comparision);
+  //       this.loading = false
+  //     }, error: err => {
+  //       this.loading = false
+  //     }
+  //   })
+  // }
 
 }

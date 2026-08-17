@@ -1,4 +1,4 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { ComparisonInput } from '../../models/comparison-input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -11,7 +11,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class ComparisonForm {
   private fb = inject(FormBuilder);
   compare = output<ComparisonInput>();
-  loading = false;
+  loading = input(false);
+
 
   form = this.fb.nonNullable.group({
     user: ['', Validators.required],
@@ -20,13 +21,9 @@ export class ComparisonForm {
 
   onSubmit() {
     let formValue: ComparisonInput;
-    this.loading = true
     if (!this.form.valid) {
-      this.loading = false;
       return;
     } else {
-
-      this.loading = false;
       formValue = this.form.getRawValue();
       this.compare.emit(formValue)
 
