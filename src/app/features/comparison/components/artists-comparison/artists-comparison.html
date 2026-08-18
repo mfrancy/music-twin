@@ -1,0 +1,66 @@
+<section class="artists-comparison" aria-labelledby="top-artists-title">
+  <header class="section-title">
+    <p>Comparação musical</p>
+    <h2 id="top-artists-title">Top Artists</h2>
+  </header>
+
+  <div class="artists-comparison__lists">
+    <article class="artist-list" aria-labelledby="user-artists-title">
+      <h3 id="user-artists-title">Usuário A</h3>
+      <ol>
+        @for (artist of userArtists(); track artist.name) {
+          <li class="artist-list__item">
+            <span class="artist-list__rank">{{ artist.rank }}</span>
+            <img [src]="artist.image" [alt]="'Imagem de ' + artist.name" />
+            <div>
+              <h4>{{ artist.name }}</h4>
+              <p>{{ artist.playCount | number }} plays</p>
+            </div>
+          </li>
+        } @empty {
+          <li class="artist-list__empty">Nenhum artista encontrado.</li>
+        }
+      </ol>
+    </article>
+
+    <article class="artist-list artist-list--right" aria-labelledby="other-user-artists-title">
+      <h3 id="other-user-artists-title">Usuário B</h3>
+      <ol>
+        @for (artist of otherUserArtists(); track artist.name) {
+          <li class="artist-list__item">
+            <span class="artist-list__rank">{{ artist.rank.padStart(2, '0') }}</span>
+            <img [src]="artist.image" [alt]="'Imagem de ' + artist.name" />
+            <div>
+              <h4>{{ artist.name }}</h4>
+              <p>{{ artist.playCount | number }} plays</p>
+            </div>
+          </li>
+        } @empty {
+          <li class="artist-list__empty">Nenhum artista encontrado.</li>
+        }
+      </ol>
+    </article>
+  </div>
+</section>
+
+<section class="common-artists" aria-labelledby="common-artists-title">
+  <header class="section-title">
+    <p>Em sintonia</p>
+    <h2 id="common-artists-title">Artists in Common</h2>
+  </header>
+
+  <div class="common-artists__grid">
+    @for (artist of commonArtists(); track artist.name) {
+      <article class="artist-card">
+        <img [src]="artist.image" [alt]="'Imagem de ' + artist.name" />
+        <div class="artist-card__content">
+          <span>#{{ artist.rank }}</span>
+          <h3>{{ artist.name }}</h3>
+          <p>{{ artist.playCount | number }} plays</p>
+        </div>
+      </article>
+    } @empty {
+      <p class="common-artists__empty">Nenhum artista em comum encontrado.</p>
+    }
+  </div>
+</section>

@@ -9,10 +9,11 @@ import { UserProfile } from '../../models/user-profile.interface';
 import { UserProfileComponent } from '../../components/user-profile/user-profile';
 import { ComparisonResultsComponent } from '../../components/comparison-results/comparison-results';
 import { Artist } from '../../models/artists.interface';
+import { ArtistsComparisonComponent } from '../../components/artists-comparison/artists-comparison';
 
 @Component({
   selector: 'app-comparison-page',
-  imports: [ComparisonForm, UserProfileComponent, ComparisonResultsComponent],
+  imports: [ComparisonForm, UserProfileComponent, ComparisonResultsComponent, ArtistsComparisonComponent],
   templateUrl: './comparison-page.html',
   styleUrl: './comparison-page.scss',
 })
@@ -21,7 +22,7 @@ export class ComparisonPage {
   lastfmService = inject(LastfmService);
   comparisonService = inject(ComparisonService);
   comparisonStats = signal<ComparisonStats | null>(null);
-  commomArtists = signal<Artist[] | null>([])
+  commonArtists = signal<Artist[] | null>([])
   userProfile = signal<UserProfile | null>(null);
   otherUserProfile = signal<UserProfile | null>(null);
   userArtists = signal<Artist[]>([]);
@@ -38,7 +39,7 @@ export class ComparisonPage {
     const user$ = this.lastfmService.getUserInfo(profile.user);
     const otherUser$ = this.lastfmService.getUserInfo(profile.otherUser);
     const userArtists$ = this.lastfmService.getTopArtists(profile.user);
-    const otherUserArtists$ = this.lastfmService.getTopArtists(profile.otherUser); 
+    const otherUserArtists$ = this.lastfmService.getTopArtists(profile.otherUser);
 
     forkJoin({
       user: user$,
@@ -54,8 +55,14 @@ export class ComparisonPage {
         this.userProfile.set(user);
         this.otherUserProfile.set(otherUser);
         this.comparisonStats.set(comparision);
-        this.commomArtists.set(findCommom);
+        this.userArtists.set(response.userArtists);
+        this.otherUserArtists.set(response.otherUserArtists);
+        this.commonArtists.set(findCommom);
+        console.log('FIRST ARTIST', response.userArtists[0]);
+console.log('IMAGE URL', response.userArtists[0]?.image);
         this.loading = false
+
+
       }, error: err => {
         this.loading = false
       }

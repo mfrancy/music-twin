@@ -1,0 +1,38 @@
+:host { display: block; }
+* { box-sizing: border-box; }
+
+.artists-comparison, .common-artists { width: min(100% - 56px, 1240px); margin: 0 auto; }
+.artists-comparison { padding: 30px 0 72px; border-top: 1px solid #e5e5e5; }
+.common-artists { padding: 0 0 80px; }
+.section-title { margin-bottom: 28px; }
+.section-title p { margin: 0 0 12px; color: #d92323; font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.section-title h2 { margin: 0; color: #111; font-size: clamp(1.55rem, 2.7vw, 2.2rem); font-weight: 700; letter-spacing: -.055em; }
+
+.artists-comparison__lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.artist-list { padding: 28px; border: 1px solid #e5e5e5; box-shadow: 0 8px 30px rgb(17 17 17 / 3%); }
+.artist-list h3 { margin: 0 0 20px; color: #a71919; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.artist-list ol { display: grid; margin: 0; padding: 0; list-style: none; }
+.artist-list__item { display: grid; grid-template-columns: 30px 48px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 74px; border-top: 1px solid #eeeeee; }
+.artist-list__rank { color: #d92323; font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+.artist-list__item img { width: 48px; height: 48px; background: #f4f4f4; object-fit: cover; }
+.artist-list__item h4 { overflow: hidden; margin: 0 0 5px; color: #111; font-size: .92rem; font-weight: 700; letter-spacing: -.02em; text-overflow: ellipsis; white-space: nowrap; }
+.artist-list__item p, .artist-card p { margin: 0; color: #666; font-size: .75rem; }
+.artist-list__empty { padding: 24px 0 4px; border-top: 1px solid #eee; color: #777; font-size: .8rem; }
+
+.common-artists { border-bottom: 1px solid #e5e5e5; }
+.common-artists__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #e5e5e5; border-left: 1px solid #e5e5e5; }
+.artist-card { min-width: 0; border-right: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
+.artist-card img { display: block; width: 100%; aspect-ratio: 1; background: #f4f4f4; object-fit: cover; }
+.artist-card__content { padding: 17px 18px 19px; }
+.artist-card__content > span { display: block; margin-bottom: 9px; color: #d92323; font-size: .65rem; font-weight: 800; letter-spacing: .08em; }
+.artist-card h3 { overflow: hidden; margin: 0 0 7px; color: #111; font-size: .93rem; font-weight: 700; letter-spacing: -.025em; text-overflow: ellipsis; white-space: nowrap; }
+.common-artists__empty { grid-column: 1 / -1; margin: 0; padding: 28px 0; border-right: 1px solid #e5e5e5; color: #777; font-size: .82rem; text-align: center; }
+
+@media (max-width: 760px) {
+  .artists-comparison, .common-artists { width: min(100% - 40px, 480px); }
+  .artists-comparison { padding: 10px 0 50px; }
+  .common-artists { padding-bottom: 48px; }
+  .artists-comparison__lists { grid-template-columns: 1fr; gap: 16px; }
+  .artist-list { padding: 22px; }
+  .common-artists__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
