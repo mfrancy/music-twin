@@ -1,16 +1,98 @@
-:host { display: block; background: #f4f1eb; }
-.results { width: min(100% - 56px, 1240px); margin: 0 auto; padding: 104px 0 112px; }
-.section-title { margin-bottom: 38px; }
-.section-title > p { margin: 0 0 13px; color: #d43d38; font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-.section-title h2 { margin: 0; font-size: clamp(2.3rem, 5vw, 4.8rem); font-weight: 750; letter-spacing: -.075em; line-height: .92; }
-.results__list { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #c9c4bd; }
-.metric { padding: 25px 30px 0 0; }
-.metric + .metric { padding-left: 30px; border-left: 1px solid #c9c4bd; }
-.metric__label { margin: 0 0 28px; color: #d43d38; font-size: .7rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
-.metric__values { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.metric__values strong { font-size: clamp(2rem, 4.2vw, 4.3rem); font-weight: 750; letter-spacing: -.08em; line-height: .9; }
-.metric__names { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; color: #706b65; font-size: .68rem; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; }
-.metric__names span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.metric__difference { margin: 28px 0 0; color: #706b65; font-size: .76rem; }
-.metric__difference b { color: #d43d38; font-weight: 750; }
-@media (max-width: 760px) { .results { width: min(100% - 40px, 480px); padding: 72px 0 76px; } .results__list { grid-template-columns: 1fr; } .metric, .metric + .metric { padding: 25px 0; border-bottom: 1px solid #c9c4bd; border-left: 0; } }
+:host {
+  display: block;
+  background: #f4f1eb;
+}
+.results {
+  width: min(100% - 56px, 1240px);
+  margin: 0 auto;
+  padding: 104px 0 112px;
+}
+.section-title {
+  margin-bottom: 38px;
+}
+.section-title > p {
+  margin: 0 0 13px;
+  color: #d43d38;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.section-title h2 {
+  margin: 0;
+  font-size: clamp(2.3rem, 5vw, 4.8rem);
+  font-weight: 750;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+}
+.results__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #c9c4bd;
+}
+.metric {
+  padding: 25px 30px 0 0;
+}
+.metric + .metric {
+  padding-left: 30px;
+  border-left: 1px solid #c9c4bd;
+}
+.metric__label {
+  margin: 0 0 28px;
+  color: #d43d38;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.metric__values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.metric__values strong {
+  font-size: clamp(2rem, 4.2vw, 4.3rem);
+  font-weight: 750;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+.metric__names {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+  color: #706b65;
+  font-size: 0.68rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+.metric__names span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.metric__difference {
+  margin: 28px 0 0;
+  color: #706b65;
+  font-size: 0.76rem;
+}
+.metric__difference b {
+  color: #d43d38;
+  font-weight: 750;
+}
+@media (max-width: 760px) {
+  .results {
+    width: min(100% - 40px, 480px);
+    padding: 72px 0 76px;
+  }
+  .results__list {
+    grid-template-columns: 1fr;
+  }
+  .metric,
+  .metric + .metric {
+    padding: 25px 0;
+    border-bottom: 1px solid #c9c4bd;
+    border-left: 0;
+  }
+}
