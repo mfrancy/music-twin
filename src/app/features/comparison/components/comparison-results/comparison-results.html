@@ -1,62 +1,25 @@
 <section class="results" id="about" aria-labelledby="results-title">
   <div class="section-title">
-    <p>Resultado da comparação</p>
-    <h2 id="results-title">Diferenças nos seus hábitos musicais</h2>
+    <h2 id="results-title">Dois jeitos de ouvir.</h2>
   </div>
   <div class="results__list">
     <article class="metric">
-      <div class="metric__heading">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path
-            d="M4 15.5v-3a8 8 0 0 1 16 0v3M4 15.5h3v4H5.5A1.5 1.5 0 0 1 4 18v-2.5Zm16 0h-3v4h1.5A1.5 1.5 0 0 0 20 18v-2.5Z"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <p>Scrobbles</p>
-      </div>
-      <strong>{{stats()?.playCountDifference}}</strong>
-      <p>reproduções de diferença</p>
-      <span></span>
+      <p class="metric__label">Scrobbles</p>
+      <div class="metric__values"><strong>{{ user()?.playCount | number }}</strong><strong>{{ otherUser()?.playCount | number }}</strong></div>
+      <div class="metric__names"><span>{{ user()?.username }}</span><span>{{ otherUser()?.username }}</span></div>
+      <p class="metric__difference">Diferença <b>{{ stats()?.playCountDifference | number }}</b></p>
     </article>
     <article class="metric">
-      <div class="metric__heading">
-        <svg viewBox="0 0 24 24" fill="none">
-          <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7" />
-          <path
-            d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.2a3 3 0 0 1 0 5.6m2 8.7a5.5 5.5 0 0 0-2.5-0.63"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-          />
-        </svg>
-        <p>Artistas</p>
-      </div>
-      <strong>{{stats()?.artistCountDifference}}</strong>
-      <p>artistas de diferença</p>
-      <span></span>
+      <p class="metric__label">Artistas</p>
+      <div class="metric__values"><strong>{{ user()?.artistCount | number }}</strong><strong>{{ otherUser()?.artistCount | number }}</strong></div>
+      <div class="metric__names"><span>{{ user()?.username }}</span><span>{{ otherUser()?.username }}</span></div>
+      <p class="metric__difference">Diferença <b>{{ stats()?.artistCountDifference | number }}</b></p>
     </article>
     <article class="metric">
-      <div class="metric__heading">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path
-            d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <p>Tracks</p>
-      </div>
-      <strong>{{stats()?.trackCountDifference}}</strong>
-      <p>faixas de diferença</p>
-      <span></span>
+      <p class="metric__label">Faixas</p>
+      <div class="metric__values"><strong>{{ user()?.trackCount | number }}</strong><strong>{{ otherUser()?.trackCount | number }}</strong></div>
+      <div class="metric__names"><span>{{ user()?.username }}</span><span>{{ otherUser()?.username }}</span></div>
+      <p class="metric__difference">Diferença <b>{{ stats()?.trackCountDifference | number }}</b></p>
     </article>
   </div>
-</section>
-<section class="coming-soon" aria-labelledby="future-title">
-  <span>Em breve</span>
-  <h2 id="future-title">O quanto seus gostos se sobrepõem?</h2>
-  <p>Em breve você poderá ver seus artistas em comum, compatibilidade musical e muito mais.</p>
 </section>
