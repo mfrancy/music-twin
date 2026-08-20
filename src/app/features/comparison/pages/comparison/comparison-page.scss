@@ -18,8 +18,8 @@
   min-height: 100dvh;;
   padding: 32px max(28px, calc((100% - 1240px) / 2));
   overflow: hidden;
-  background: #171717;
-  color: #f4f1eb;
+  background: #fff;
+  color: #000;
   gap: clamp(20px, 4vw, 64px);
 }
 .comparison::after {
@@ -55,7 +55,7 @@
 .comparison__intro {
   max-width: 320px;
   margin: 0 auto 18px;
-  color: #b7b1a8;
+  color: #7e7972;
   font-size: 0.86rem;
   line-height: 1.6;
 }
