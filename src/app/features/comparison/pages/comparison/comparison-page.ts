@@ -10,6 +10,7 @@ import { UserProfileComponent } from '../../components/user-profile/user-profile
 import { ComparisonResultsComponent } from '../../components/comparison-results/comparison-results';
 import { Artist } from '../../models/artists.interface';
 import { ArtistsComparisonComponent } from '../../components/artists-comparison/artists-comparison';
+import { TopArtistsResponse, UserInfoResponse } from '../../models/lastfmresponse.interface';
 
 @Component({
   selector: 'app-comparison-page',
@@ -22,16 +23,16 @@ export class ComparisonPage {
   lastfmService = inject(LastfmService);
   comparisonService = inject(ComparisonService);
   comparisonStats = signal<ComparisonStats | null>(null);
-  commonArtists = signal<Artist[] | null>([])
-  userProfile = signal<UserProfile | null>(null);
-  otherUserProfile = signal<UserProfile | null>(null);
-  userArtists = signal<Artist[]>([]);
-  otherUserArtists = signal<Artist[]>([]);
+  commonArtists = signal<TopArtistsResponse[] | null>([])
+
+  userProfile = signal<UserInfoResponse | null>(null);
+  otherUserProfile = signal<UserInfoResponse | null>(null);
+  userArtists = signal<TopArtistsResponse[]>([]);
+  otherUserArtists = signal<TopArtistsResponse[]>([]);
   loading = false;
 
   onCompare(event: ComparisonInput): void {
     this.loadComparisonData(event)
-
   }
 
   loadComparisonData(profile: ComparisonInput) {
@@ -59,7 +60,7 @@ export class ComparisonPage {
         this.otherUserArtists.set(response.otherUserArtists);
         this.commonArtists.set(findCommom);
         console.log('FIRST ARTIST', response.userArtists[0]);
-console.log('IMAGE URL', response.userArtists[0]?.image);
+        console.log('IMAGE URL', response.userArtists[0]?.image);
         this.loading = false
 
 
@@ -69,32 +70,5 @@ console.log('IMAGE URL', response.userArtists[0]?.image);
     })
 
   }
-
-  // loadArtist(profile: ComparisonInput) {
-  //   this.loading = true;
-  //   const user$ = this.lastfmService.getUserInfo(profile.user);
-  //   const otherUser$ = this.lastfmService.getUserInfo(profile.otherUser);
-  //   const userArtists$ = this.lastfmService.getTopArtists(profile.user);
-  //   const otherUserArtists$ = this.lastfmService.getTopArtists(profile.otherUser);
-
-  //   forkJoin({
-  //     user: user$,
-  //     otherUser: otherUser$,
-  //     userArtists: userArtists$,
-  //     otherUserArtists: otherUserArtists$
-  //   }).subscribe({
-  //     next: (response) => {
-  //       const user = response.user;
-  //       const otherUser = response.otherUser;
-  //       const comparision = this.comparisonService.compare(user, otherUser);
-  //       this.userArtists.set(user);
-  //       this.otherUserProfile.set(otherUser);
-  //       this.comparisonStats.set(comparision);
-  //       this.loading = false
-  //     }, error: err => {
-  //       this.loading = false
-  //     }
-  //   })
-  // }
 
 }

@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Artist } from '../../models/artists.interface';
+import { TopArtistsResponse } from '../../models/lastfmresponse.interface';
 
 @Component({
   selector: 'app-artists-comparison',
@@ -9,7 +10,7 @@ import { Artist } from '../../models/artists.interface';
   styleUrl: './artists-comparison.scss',
 })
 export class ArtistsComparisonComponent {
-  userArtists = input<Artist[]>([]);
-  otherUserArtists = input<Artist[]>([]);
-  commonArtists = input<Artist[]>([]);
+  userArtists = input<TopArtistsResponse[]>([]);
+  otherUserArtists = input<TopArtistsResponse[]>([]);
+  commonArtists = input<TopArtistsResponse[]>([]);
 }

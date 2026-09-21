@@ -1,44 +1,16 @@
-export interface GetUserInfoResponse<TImage> {
-    user: {
-        spotify_expiry_estimate: {
-            unixtime: string,
-            "#text": number
-        }
-        playcount: string,
-        playlists: string,
-        album_count: string,
-        bootstrap: string,
-        url: string,
-        age: string,
-        name: string,
-        artist_count: string,
-        subscriber: string,
-        track_count: string,
-        realname: string
-        image: TImage[]
-    }
+export interface UserInfoResponse {
+    username: string,
+    realname: string,
+    image: string,
+    playCount: number,
+    artistCount: number,
+    trackCount: number,
 }
 
-export interface ImageResponse {
-    size: string,
-    '#text': string
-}
-
-export interface GetTopArtistsResponse<TArtist> {
-    topartists: {
-        artist: TArtist[]
-    }
-}
-
-export interface ArtistResponse<TImage> {
-    streamable: string,
-    image: TImage[]
-    mbid: string,
-    url: string,
-    playcount: string
-    "@attr": {
-        rank: string
-    },
-    name: string
+export interface TopArtistsResponse {
+    name: string,
+    playcount: number,
+    image: string,
+    rank: string
 }
 

@@ -14,7 +14,7 @@
             <img [src]="artist.image" [alt]="'Imagem de ' + artist.name" />
             <div>
               <h4>{{ artist.name }}</h4>
-              <p>{{ artist.playCount | number }} plays</p>
+              <p>{{ artist.playcount | number }} plays</p>
             </div>
           </li>
         } @empty {
@@ -32,7 +32,7 @@
             <img [src]="artist.image" [alt]="'Imagem de ' + artist.name" />
             <div>
               <h4>{{ artist.name }}</h4>
-              <p>{{ artist.playCount | number }} plays</p>
+              <p>{{ artist.playcount | number }} plays</p>
             </div>
           </li>
         } @empty {
@@ -56,7 +56,7 @@
         <div class="artist-card__content">
           <span>#{{ artist.rank }}</span>
           <h3>{{ artist.name }}</h3>
-          <p>{{ artist.playCount | number }} plays</p>
+          <p>{{ artist.playcount | number }} plays</p>
         </div>
       </article>
     } @empty {

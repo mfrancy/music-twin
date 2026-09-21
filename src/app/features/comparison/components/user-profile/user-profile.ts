@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { UserProfile } from '../../models/user-profile.interface';
+import { UserInfoResponse } from '../../models/lastfmresponse.interface';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,5 +7,5 @@ import { UserProfile } from '../../models/user-profile.interface';
   styleUrl: './user-profile.scss',
 })
 export class UserProfileComponent {
-  user = input<UserProfile | null>(null)
+  user = input<UserInfoResponse | null>(null)
 }
