@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserProfile } from '../models/user-profile.interface';
 import { ComparisonStats } from '../models/comparison-stats.interface';
-import { Artist } from '../models/artists.interface';
 import { TopArtistsResponse, UserInfoResponse } from '../models/lastfmresponse.interface';
 
 @Injectable({

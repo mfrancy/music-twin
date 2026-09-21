@@ -1,7 +1,7 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { ComparisonStats } from '../../models/comparison-stats.interface';
-import { UserProfile } from '../../models/user-profile.interface';
+import { UserInfoResponse } from '../../models/lastfmresponse.interface';
 
 @Component({
   selector: 'app-comparison-results',
@@ -11,7 +11,7 @@ import { UserProfile } from '../../models/user-profile.interface';
 })
 export class ComparisonResultsComponent {
   stats = input<ComparisonStats | null>(null);
-  user = input<UserProfile | null>(null);
-  otherUser = input<UserProfile | null>(null);
+  user = input<UserInfoResponse | null>(null);
+  otherUser = input<UserInfoResponse | null>(null);
 
 }

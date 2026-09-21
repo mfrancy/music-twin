@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_CONFIG } from '../../../core/config/api.config';
-import { environment } from '../../../../environments/environment.development';
 import { TopArtistsResponse, UserInfoResponse } from '../models/lastfmresponse.interface';
-import { UserProfile } from '../models/user-profile.interface';
-import { map } from 'rxjs';
-import { Artist } from '../models/artists.interface';
 
 @Injectable({
   providedIn: 'root',
