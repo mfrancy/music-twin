@@ -2,22 +2,28 @@
   <section class="comparison" id="how-it-works" aria-labelledby="comparison-title">
     <app-user-profile [user]="userProfile()" class="profile--left"></app-user-profile>
     <div class="comparison__center">
+      <p class="comparison__eyebrow">Uma leitura dos seus hábitos musicais</p>
       <h1 id="comparison-title">
-        Compare seus.<br />
-        <span>hábitos musicais.</span>
+        Music<br />
+        <span>Twins</span>
       </h1>
-      <p class="comparison__intro">Descubra o quanto vocês combinam musicalmente.</p>
-      <div class="vs" aria-hidden="true">VS</div>
+      <p class="comparison__intro">Compare dois universos de escuta e encontre os pontos onde eles se encontram.</p>
       <app-comparison-form [loading]="loading" (compare)="onCompare($event)"></app-comparison-form>
     </div>
     <app-user-profile [user]="otherUserProfile()" class="profile--right"></app-user-profile>
   </section>
   @if (comparisonStats(); as stats) {
-    <app-comparison-results [stats]="stats"></app-comparison-results>
+    <app-comparison-results
+      [stats]="stats"
+      [user]="userProfile()"
+      [otherUser]="otherUserProfile()"
+    ></app-comparison-results>
     <app-artists-comparison
       [userArtists]="userArtists()"
       [otherUserArtists]="otherUserArtists()"
       [commonArtists]="commonArtists() ?? []"
+      [userName]="userProfile()?.username ?? 'Usuário A'"
+      [otherUserName]="otherUserProfile()?.username ?? 'Usuário B'"
     />
   }
 </main>

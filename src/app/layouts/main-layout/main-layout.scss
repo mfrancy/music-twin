@@ -1,35 +1,43 @@
 .site-header {
   display: flex;
-  min-height: 66px;
+  min-height: 72px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 max(28px, calc((100vw - 1240px) / 2));
-  background: #000;
+  padding: 0 max(20px, calc((100vw - 1240px) / 2));
+  border-bottom: 1px solid #302d2a;
+  background: #171717;
   color: #fff;
 }
 .brand {
+  display: inline-flex;
+  align-items: baseline;
   color: #fff;
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.05em;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -.07em;
   text-decoration: none;
 }
 .brand span {
-  color: #d92323;
+  color: #ef4b45;
 }
-.site-nav {
-  display: flex;
-  gap: 25px;
-}
-.site-nav a {
+.site-header__edition {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: #e7e7e7;
-  font-size: 0.76rem;
-  text-decoration: none;
+  gap: 10px;
+  color: #8d8780;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
 }
-.site-nav svg {
-  width: 15px;
-  color: #d92323;
+.site-header__edition i {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4b45;
+}
+@media (max-width: 760px) {
+  .site-header { min-height: 62px; }
+  .site-header__edition { font-size: .55rem; }
 }

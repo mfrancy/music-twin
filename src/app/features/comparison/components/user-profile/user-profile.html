@@ -1,40 +1,15 @@
 <article class="profile">
-  <!-- Replace these presentation placeholders with the profile input when it is added. -->
-  <img class="profile__avatar" src="{{user()?.image}}" alt="Avatar do usuário" />
-  <div class="profile__identity">
-    <h2>Nome do usuário</h2>
-    <p>{{user()?.username}}</p>
-    <span>Last.fm user</span>
+  <div class="profile__vinyl" [class.profile__vinyl--reverse]="true">
+    <div class="profile__label">
+      @if (user()?.image) {
+        <img class="profile__avatar" [src]="user()?.image" alt="" />
+      } @else {
+        <span aria-hidden="true">?</span>
+      }
+    </div>
   </div>
-  <dl class="profile__stats">
-    <div>
-      <dt>
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 15.5v-3a8 8 0 0 1 16 0v3M4 15.5h3v4H5.5A1.5 1.5 0 0 1 4 18v-2.5Zm16 0h-3v4h1.5A1.5 1.5 0 0 0 20 18v-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg>
-        Scrobbles
-      </dt>
-      <dd>{{user()?.playCount}}</dd>
-    </div>
-    <div>
-      <dt>
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7" /><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0M16 5.2a3 3 0 0 1 0 5.6m2 8.7a5.5 5.5 0 0 0-2.5-4.63" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
-        Artistas
-      </dt>
-      <dd>{{user()?.artistCount}}</dd>
-    </div>
-    <div>
-      <dt>
-        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg>
-        Tracks
-      </dt>
-      <dd>{{user()?.trackCount}}</dd>
-    </div>
-  </dl>
-
-  <!-- Empty-state structure to be selected once the profile input is connected. -->
-  <ng-template #emptyProfile>
-    <div class="profile__empty" aria-hidden="true">
-      <span></span>
-      <p>Perfil</p>
-    </div>
-  </ng-template>
+  <div class="profile__identity">
+    <span class="profile__tag">Last.fm / perfil</span>
+    <h2>{{ user()?.username || 'Aguardando usuário' }}</h2>
+  </div>
 </article>
