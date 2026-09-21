@@ -1,1 +1,89 @@
-:host { display: block; }.comparison-form { display: grid; grid-template-columns: 1fr; gap: 10px; text-align: left; }.field > span { display: block; margin: 0 0 6px; color: #b7b1a8; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }.field > div { display: flex; align-items: center; height: 48px; gap: 10px; padding: 0 13px; border-bottom: 1px solid #706b65; background: rgb(255 255 255 / 4%); color: #ef4b45; transition: border-color .2s, background .2s; }.field > div:focus-within { border-color: #ef4b45; background: rgb(255 255 255 / 9%); }.field svg { width: 16px; flex: 0 0 auto; }.field input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #f4f1eb; font: inherit; font-size: .78rem; }.field input::placeholder { color: #8d8780; }.form-vs { display: block; margin: 1px 0; color: #ef4b45; font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-align: center; }button { display: inline-flex; height: 48px; align-items: center; justify-content: center; gap: 8px; margin-top: 7px; border: 1px solid #ef4b45; border-radius: 0; background: #ef4b45; color: #171717; cursor: pointer; font: inherit; font-size: .72rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; transition: background .2s, color .2s; }button:hover { background: #f4f1eb; border-color: #f4f1eb; }button svg { width: 17px; }
+:host {
+  display: block;
+}
+.comparison-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  text-align: left;
+}
+.field > span {
+  display: block;
+  margin: 0 0 6px;
+  color: #000;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.field > div {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  gap: 10px;
+  padding: 0 13px;
+  border-bottom: 1px solid #706b65;
+  background: rgb(255 255 255 / 4%);
+  color: #ef4b45;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.field > div:focus-within {
+  border-color: #ef4b45;
+  background: rgb(255 255 255 / 9%);
+}
+.field svg {
+  width: 16px;
+  flex: 0 0 auto;
+}
+.field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #000;
+  font: inherit;
+  font-size: 0.78rem;
+}
+.field input::placeholder {
+  color: #8d8780;
+}
+.form-vs {
+  display: block;
+  margin: 1px 0;
+  color: #ef4b45;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+button {
+  display: inline-flex;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 7px;
+  border: 1px solid #ef4b45;
+  border-radius: 0;
+  background: #ef4b45;
+  color: #171717;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+button:hover {
+  background: #f4f1eb;
+  border-color: #f4f1eb;
+}
+button svg {
+  width: 17px;
+}
