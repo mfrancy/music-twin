@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #f4f1eb; }
+
+.swal2-popup {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.swal2-title,
+.swal2-html-container {
+  font-family: 'Inter', sans-serif !important;
+}
