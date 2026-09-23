@@ -9,7 +9,7 @@ export interface UserInfoResponse {
 
 export interface TopArtistsResponse {
     name: string,
-    playcount: number,
+    playCount: number,
     image: string,
     rank: string
 }

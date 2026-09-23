@@ -2,6 +2,7 @@ import { Component, computed, input, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Artist } from '../../models/artists.interface';
 import { TopArtistsResponse } from '../../models/lastfmresponse.interface';
+import { ComparisonCommonArtist } from '../../models/comparison-stats.interface';
 
 @Component({
   selector: 'app-artists-comparison',
@@ -12,15 +13,16 @@ import { TopArtistsResponse } from '../../models/lastfmresponse.interface';
 export class ArtistsComparisonComponent {
   userArtists = input<TopArtistsResponse[]>([]);
   otherUserArtists = input<TopArtistsResponse[]>([]);
-  commonArtists = input<TopArtistsResponse[]>([]);
+  commonArtists = input<ComparisonCommonArtist[]>([]);
   userName = input('Usuário A');
   otherUserName = input('Usuário B');
-  commomLimit: number = 5;
+  commomLimit: number = 6;
   selectedLimit = signal<number>(5);
 
 
 
   visibleUserArtists = computed(() => {
+    console.log(this.userArtists().slice(0, this.selectedLimit()));
     return this.userArtists().slice(0, this.selectedLimit())
   });
 
@@ -35,6 +37,10 @@ export class ArtistsComparisonComponent {
 
   visibleCommomArtists = computed(() => {
     return this.commonArtists().slice(0, this.commomLimit);
+  })
+
+  totalVisibleCommomArtists = computed(() => {
+    return this.commonArtists();
   })
 
 }

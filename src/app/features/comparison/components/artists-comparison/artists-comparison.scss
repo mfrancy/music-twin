@@ -144,53 +144,67 @@
 }
 .common-artists__grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
 }
-.artist-card {
+.common-artist-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
   min-width: 0;
+  padding: 22px 0;
+  border-top: 1px solid #c9c4bd;
+}
+.common-artist-card__user {
+  min-width: 0;
+}
+.common-artist-card__user--right {
+  text-align: right;
+}
+.common-artist-card__username,
+.common-artist-card__rank,
+.common-artist-card__plays {
+  margin: 0;
+}
+.common-artist-card__username {
   overflow: hidden;
-  background: #171717;
-  color: #f4f1eb;
-  transition: transform 0.35s ease;
-}
-.artist-card:hover {
-  transform: translateY(-7px) rotate(-1deg);
-}
-.artist-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  background: #292929;
-  object-fit: cover;
-  transition:
-    opacity 0.35s ease,
-    transform 0.5s ease;
-}
-.artist-card:hover img {
-  opacity: 0.72;
-  transform: scale(1.04);
-}
-.artist-card__content {
-  padding: 17px 18px 19px;
-}
-.artist-card__content > span {
-  display: block;
-  margin-bottom: 9px;
-  color: #ef4b45;
-  font-size: 0.65rem;
+  color: #706b65;
+  font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-}
-.artist-card h3 {
-  overflow: hidden;
-  margin: 0 0 7px;
-  color: #f4f1eb;
-  font-size: 0.93rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
   text-overflow: ellipsis;
+  text-transform: uppercase;
   white-space: nowrap;
+}
+.common-artist-card__rank {
+  margin-top: 4px;
+  color: #d43d38;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+.common-artist-card__plays {
+  margin-top: 8px;
+  color: #706b65;
+  font-size: 0.72rem;
+}
+.common-artist-card__artist {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1;
+  place-items: center;
+  min-width: 0;
+  text-align: center;
+}
+.common-artist-card h3 {
+  margin: 0;
+  color: #171717;
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  overflow-wrap: anywhere;
 }
 .common-artists__empty {
   grid-column: 1 / -1;
@@ -264,8 +278,25 @@
     width: 100%;
   }
   .common-artists__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+  .common-artist-card {
+    grid-template-columns: minmax(0, 1fr) 82px minmax(0, 1fr);
     gap: 10px;
+    padding: 18px 0;
+  }
+  .common-artist-card__username {
+    font-size: 0.55rem;
+  }
+  .common-artist-card__rank {
+    font-size: 1rem;
+  }
+  .common-artist-card__plays {
+    font-size: 0.67rem;
+  }
+  .common-artist-card h3 {
+    font-size: 0.82rem;
   }
   .verdict {
     padding: 76px 20px 90px;

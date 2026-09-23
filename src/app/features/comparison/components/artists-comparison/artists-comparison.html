@@ -11,17 +11,18 @@
       <label><input type="radio" name="artist-limit" value="50" [checked]="selectedLimit() === 50" (change)="onLimitChange($event)" /> <span>50</span></label>
     </fieldset>
   </header>
-
+  
   <div class="artists-comparison__lists">
     <article class="artist-list" aria-labelledby="user-artists-title">
       <h3 id="user-artists-title">{{ userName() }}</h3>
       <ol>
         @for (artist of visibleUserArtists(); track artist.name) {
+
           <li class="artist-list__item">
             <span class="artist-list__rank">{{ artist.rank }}</span>
             <div>
               <h4>{{ artist.name }}</h4>
-              <p>{{ artist.playcount | number }} plays</p>
+              <p>{{ artist.playCount | number }} plays</p>
             </div>
           </li>
         } @empty {
@@ -38,7 +39,7 @@
             <span class="artist-list__rank">{{ artist.rank.padStart(2, '0') }}</span>
             <div>
               <h4>{{ artist.name }}</h4>
-              <p>{{ artist.playcount | number }} plays</p>
+              <p>{{ artist.playCount | number }} plays</p>
             </div>
           </li>
         } @empty {
@@ -51,17 +52,26 @@
 
 <section class="common-artists" aria-labelledby="common-artists-title">
   <header class="section-title">
-    <h2 id="common-artists-title">Artistas em comum</h2>
+    <h2 id="common-artists-title">Top artistas em comum</h2>
   </header>
 
   <div class="common-artists__grid">
     @for (artist of visibleCommomArtists(); track artist.name) {
-      <article class="artist-card">
-        <img [src]="artist.image" [alt]="'Imagem de ' + artist.name" />
-        <div class="artist-card__content">
-          <span>#{{ artist.rank }}</span>
+      <article class="common-artist-card">
+        <div class="common-artist-card__user common-artist-card__user--left">
+          <p class="common-artist-card__username">{{ userName() }}</p>
+          <p class="common-artist-card__rank">#{{ artist.userRank }}</p>
+          <p class="common-artist-card__plays">{{ artist.playCount | number }} plays</p>
+        </div>
+
+        <div class="common-artist-card__artist">
           <h3>{{ artist.name }}</h3>
-          <p>{{ artist.playcount | number }} plays</p>
+        </div>
+
+        <div class="common-artist-card__user common-artist-card__user--right">
+          <p class="common-artist-card__username">{{ otherUserName() }}</p>
+          <p class="common-artist-card__rank">#{{ artist.otherUserRank }}</p>
+          <p class="common-artist-card__plays">{{ artist.otherUserPlayCount | number }} plays</p>
         </div>
       </article>
     } @empty {
@@ -71,5 +81,5 @@
 </section>
 <section class="verdict" aria-labelledby="verdict-title">
   <h2 id="verdict-title">Então... vocês são<br /><span>music twins?</span></h2>
-  <p class="verdict__count"><b>{{ visibleCommomArtists().length }}</b> artistas em comum</p>
+  <p class="verdict__count"><b>{{ totalVisibleCommomArtists().length }} </b> artistas em comum no total</p>
 </section>

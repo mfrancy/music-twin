@@ -6,3 +6,12 @@ export interface ComparisonStats {
     moreArtists: string,
     moreTracks: string
 }
+
+export interface ComparisonCommonArtist {
+  name: string;
+  image: string;
+  userRank: number;
+  otherUserRank: number;
+  playCount: number;
+  otherUserPlayCount: number;
+}

@@ -4,7 +4,7 @@ import { ComparisonForm } from '../../components/comparison/comparison-form';
 import { LastfmService } from '../../services/lastfm.service';
 import { catchError, forkJoin, throwError } from 'rxjs';
 import { ComparisonService } from '../../services/comparison.service';
-import { ComparisonStats } from '../../models/comparison-stats.interface';
+import { ComparisonCommonArtist, ComparisonStats } from '../../models/comparison-stats.interface';
 import { UserProfile } from '../../models/user-profile.interface';
 import { UserProfileComponent } from '../../components/user-profile/user-profile';
 import { ComparisonResultsComponent } from '../../components/comparison-results/comparison-results';
@@ -24,7 +24,7 @@ export class ComparisonPage {
   lastfmService = inject(LastfmService);
   comparisonService = inject(ComparisonService);
   comparisonStats = signal<ComparisonStats | null>(null);
-  commonArtists = signal<TopArtistsResponse[] | null>([])
+  commonArtists = signal<ComparisonCommonArtist[] | null>([])
 
   userProfile = signal<UserInfoResponse | null>(null);
   otherUserProfile = signal<UserInfoResponse | null>(null);
@@ -63,21 +63,18 @@ export class ComparisonPage {
         const user = response.user;
         const otherUser = response.otherUser;
         const comparision = this.comparisonService.compareMainStats(user, otherUser)
-        const findCommom = this.comparisonService.findCommonArtists(response.userArtists, response.otherUserArtists)
+        const findCommom = this.comparisonService.findTotalCommonArtists(response.userArtists, response.otherUserArtists)
         this.userProfile.set(user);
         this.otherUserProfile.set(otherUser);
         this.comparisonStats.set(comparision);
         this.userArtists.set(response.userArtists);
         this.otherUserArtists.set(response.otherUserArtists);
         this.commonArtists.set(findCommom);
-        console.log('FIRST ARTIST', response.userArtists[0]);
-        console.log('IMAGE URL', response.userArtists[0]?.image);
         this.loading = false
 
 
       }, error: err => {
         this.loading = false
-        console.log(err)
         if (err.status === 404) {
           Swal.fire({
             toast: true,

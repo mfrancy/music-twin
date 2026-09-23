@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ComparisonStats } from '../models/comparison-stats.interface';
+import { ComparisonCommonArtist, ComparisonStats } from '../models/comparison-stats.interface';
 import { TopArtistsResponse, UserInfoResponse } from '../models/lastfmresponse.interface';
 
 @Injectable({
@@ -46,4 +46,30 @@ export class ComparisonService {
       userArtists => otherUserArtists.some(otherArtist => otherArtist.name === userArtists.name)
     );
   }
+
+  findTotalCommonArtists(
+  userArtists: TopArtistsResponse[],
+  otherUserArtists: TopArtistsResponse[]
+): ComparisonCommonArtist[] {
+
+  return userArtists.flatMap(userArtist => {
+
+    const otherArtist = otherUserArtists.find(
+      artist => artist.name === userArtist.name
+    );
+
+    if (!otherArtist) {
+      return [];
+    }
+
+    return [{
+      name: userArtist.name,
+      image: userArtist.image,
+      userRank: Number(userArtist.rank),
+      otherUserRank: Number(otherArtist.rank),
+      playCount: userArtist.playCount,
+      otherUserPlayCount: otherArtist.playCount
+    }];
+  });
+}
 }
