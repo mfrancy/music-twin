@@ -8,14 +8,32 @@ import { TopArtistsResponse, UserInfoResponse } from '../models/lastfmresponse.i
 export class ComparisonService {
 
   compareMainStats(user: UserInfoResponse, otherUser: UserInfoResponse): ComparisonStats {
-    const playCountDifference = user.playCount - otherUser.playCount
-    const artistCountDifference = user.artistCount - otherUser.artistCount
-    const trackCountDifference = user.trackCount - otherUser.trackCount
+    const playCountDifference = Math.abs(user.playCount - otherUser.playCount)
+    const artistCountDifference = Math.abs(user.artistCount - otherUser.artistCount)
+    const trackCountDifference = Math.abs(user.trackCount - otherUser.trackCount)
+
+    const morePlayCount =
+      user.playCount > otherUser.playCount
+        ? user.username
+        : otherUser.username;
+
+    const moreArtists =
+      user.artistCount > otherUser.artistCount
+        ? user.username
+        : otherUser.username;
+
+    const moreTracks =
+      user.trackCount > otherUser.trackCount
+        ? user.username
+        : otherUser.username;
 
     const result = {
       playCountDifference,
       artistCountDifference,
-      trackCountDifference
+      trackCountDifference,
+      morePlayCount,
+      moreArtists,
+      moreTracks
     }
 
     return result
@@ -26,6 +44,6 @@ export class ComparisonService {
 
     return userArtists.filter(
       userArtists => otherUserArtists.some(otherArtist => otherArtist.name === userArtists.name)
-      );
+    );
   }
 }

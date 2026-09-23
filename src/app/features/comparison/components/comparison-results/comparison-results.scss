@@ -47,11 +47,12 @@
 }
 .metric__values {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 15px;
 }
+
 .metric__values strong {
-  font-size: clamp(2rem, 4.2vw, 4.3rem);
+  font-size: clamp(2rem, 3.6vw, 4.3rem); 
   font-weight: 750;
   letter-spacing: -0.08em;
   line-height: 0.9;

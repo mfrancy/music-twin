@@ -5,21 +5,21 @@
   <div class="results__list">
     <article class="metric">
       <p class="metric__label">Scrobbles</p>
-      <div class="metric__values"><strong>{{ user()?.playCount | number }}</strong><strong>{{ otherUser()?.playCount | number }}</strong></div>
+      <div class="metric__values"><strong>{{ user()?.playCount | number }}</strong>x<strong>{{ otherUser()?.playCount | number }}</strong></div>
       <div class="metric__names"><span>{{ user()?.username }}</span><span>{{ otherUser()?.username }}</span></div>
-      <p class="metric__difference">Diferença <b>{{ stats()?.playCountDifference | number }}</b></p>
+      <p class="metric__difference">{{stats()?.morePlayCount}} tem <b>{{ stats()?.playCountDifference | number }}</b> scrobbles a mais</p>
     </article>
     <article class="metric">
       <p class="metric__label">Artistas</p>
-      <div class="metric__values"><strong>{{ user()?.artistCount | number }}</strong><strong>{{ otherUser()?.artistCount | number }}</strong></div>
+      <div class="metric__values"><strong>{{ user()?.artistCount | number }}</strong>x<strong>{{ otherUser()?.artistCount | number }}</strong></div>
       <div class="metric__names"><span>{{ user()?.username }}</span><span>{{ otherUser()?.username }}</span></div>
-      <p class="metric__difference">Diferença <b>{{ stats()?.artistCountDifference | number }}</b></p>
+      <p class="metric__difference">{{stats()?.moreArtists}} ouviu <b>{{ stats()?.artistCountDifference | number }} </b> artistas a mais</p>
     </article>
     <article class="metric">
       <p class="metric__label">Faixas</p>
-      <div class="metric__values"><strong>{{ user()?.trackCount | number }}</strong><strong>{{ otherUser()?.trackCount | number }}</strong></div>
+      <div class="metric__values"><strong>{{ user()?.trackCount | number }}</strong>x<strong>{{ otherUser()?.trackCount | number }}</strong></div>
       <div class="metric__names"><span>{{ user()?.username }}</span><span>{{ otherUser()?.username }}</span></div>
-      <p class="metric__difference">Diferença <b>{{ stats()?.trackCountDifference | number }}</b></p>
+      <p class="metric__difference">{{stats()?.moreTracks}} ouviu <b>{{ stats()?.trackCountDifference | number }} </b>músicas a mais</p>
     </article>
   </div>
 </section>
