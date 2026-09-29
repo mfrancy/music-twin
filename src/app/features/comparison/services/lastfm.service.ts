@@ -11,12 +11,12 @@ export class LastfmService {
 
 
   getUserInfo(username: string) {
-    return this.http.get<UserInfoResponse>(API_CONFIG.backend.baseUrl + `?username=${username}`)
+    return this.http.get<UserInfoResponse>(API_CONFIG.backend.lastFmUrl + `?username=${username}`)
   }
   
 
   getTopArtists(username: string) {
-    return this.http.get<TopArtistsResponse[]>(API_CONFIG.backend.baseUrl + `/top-artists?username=${username}`)
+    return this.http.get<TopArtistsResponse[]>(API_CONFIG.backend.lastFmUrl + `/top-artists?username=${username}`)
   }
 
 }

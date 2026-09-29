@@ -3,6 +3,7 @@ export const API_CONFIG = {
         baseUrl: 'https://ws.audioscrobbler.com/2.0/'
     },
     backend: {
-        baseUrl: 'https://musictwins-api.onrender.com/api/LastFm'
+        lastFmUrl: 'https://musictwins-api.onrender.com/api/LastFm',
+        spotifyUrl: 'https://musictwins-api.onrender.com/api/Spotify'
     }
 };
