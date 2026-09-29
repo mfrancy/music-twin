@@ -9,7 +9,7 @@ export interface ComparisonStats {
 
 export interface ComparisonCommonArtist {
   name: string;
-  image: string;
+  image: string | null;
   userRank: number;
   otherUserRank: number;
   playCount: number;

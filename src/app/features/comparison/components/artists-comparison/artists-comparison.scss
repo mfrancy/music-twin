@@ -1,6 +1,6 @@
 :host {
   display: block;
-  background: #f4f1eb;
+  background: #fff;
 }
 .artists-comparison,
 .common-artists {
@@ -194,8 +194,17 @@
   width: 100%;
   aspect-ratio: 1;
   place-items: center;
+  grid-template-rows: 1fr auto;
+  gap: 8px;
   min-width: 0;
   text-align: center;
+}
+.common-artist-card__artist img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .common-artist-card h3 {
   margin: 0;

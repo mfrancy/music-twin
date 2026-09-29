@@ -2,7 +2,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { ComparisonInput } from '../../models/comparison-input';
 import { ComparisonForm } from '../../components/comparison/comparison-form';
 import { LastfmService } from '../../services/lastfm.service';
-import { catchError, forkJoin, throwError } from 'rxjs';
+import { catchError, forkJoin, of, throwError } from 'rxjs';
 import { ComparisonService } from '../../services/comparison.service';
 import { ComparisonCommonArtist, ComparisonStats } from '../../models/comparison-stats.interface';
 import { UserProfile } from '../../models/user-profile.interface';
@@ -12,6 +12,7 @@ import { Artist } from '../../models/artists.interface';
 import { ArtistsComparisonComponent } from '../../components/artists-comparison/artists-comparison';
 import { TopArtistsResponse, UserInfoResponse } from '../../models/lastfmresponse.interface';
 import Swal from 'sweetalert2';
+import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
   selector: 'app-comparison-page',
@@ -22,6 +23,7 @@ import Swal from 'sweetalert2';
 
 export class ComparisonPage {
   lastfmService = inject(LastfmService);
+  spotifyService = inject(SpotifyService);
   comparisonService = inject(ComparisonService);
   comparisonStats = signal<ComparisonStats | null>(null);
   commonArtists = signal<ComparisonCommonArtist[] | null>([])
@@ -69,8 +71,32 @@ export class ComparisonPage {
         this.comparisonStats.set(comparision);
         this.userArtists.set(response.userArtists);
         this.otherUserArtists.set(response.otherUserArtists);
-        this.commonArtists.set(findCommom);
-        this.loading = false
+        const imageRequests$ = findCommom.map(artist =>
+          this.spotifyService.getImageUrl(artist.name).pipe(
+            catchError(() => of(null))
+          )
+        );
+
+        if (imageRequests$.length === 0) {
+          this.commonArtists.set([]);
+          this.loading = false;
+          return;
+        }
+
+        forkJoin(imageRequests$).subscribe({
+          next: images => {
+            this.commonArtists.set(findCommom.map((artist, index) => ({
+              ...artist,
+              image: images[index]
+            })));
+            this.loading = false;
+          },
+          error: () => {
+            // Individual image errors are converted to null above.
+            this.commonArtists.set(findCommom.map(artist => ({ ...artist, image: null })));
+            this.loading = false;
+          }
+        });
 
 
       }, error: err => {

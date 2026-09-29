@@ -65,6 +65,9 @@
         </div>
 
         <div class="common-artist-card__artist">
+          @if (artist.image) {
+            <img [src]="artist.image" [alt]="artist.name" />
+          }
           <h3>{{ artist.name }}</h3>
         </div>
 
